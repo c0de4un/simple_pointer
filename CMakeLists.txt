@@ -100,7 +100,8 @@ set ( ROOT_PROJECT_OUTPUT_DIR "${CMAKE_SOURCE_DIR}/bin/${BUILD_TYPE_DIR}/${PLATF
 
 # Headers
 set ( ROOT_PROJECT_HEADERS
-"${ROOT_PROJECT_SRC_DIR}/SimplePointer.hpp" )
+"${ROOT_PROJECT_SRC_DIR}/fast_ptr.hxx"
+"${ROOT_PROJECT_SRC_DIR}/relative_ptr.hxx" )
 
 # =================================================================================
 # SOURCES
@@ -108,7 +109,6 @@ set ( ROOT_PROJECT_HEADERS
 
 # Sources
 set ( ROOT_PROJECT_SOURCES
-"${ROOT_PROJECT_SRC_DIR}/SimplePointer.cpp"
 "${ROOT_PROJECT_SRC_DIR}/main.cpp" )
 
 # =================================================================================
