@@ -5,59 +5,49 @@
  * API: C++ 11
 */
 
-#ifndef DEBUG
-// Include STL
+// Include iostream
 #include <iostream>
+
+// Include stdlib
 #include <cstdlib>
-#endif // !DEBUG
 
-#define _C0DE4UN_MULTITHREADING_ENABLED_
+// Include rel_ptr
+#include "rel_ptr.hpp"
 
-// Include fast_ptr
-#include "fast_ptr.hxx"
+// Include Object
+#include "objects/Object.hpp"
 
-// Include relative_ptr
-#include "relative_ptr.hxx"
-
-static void fast_ptr_test( ) noexcept
+static void ptr_copy_test( c0de4un::rel_ptr<c0de4un::Object> & pObject )
 {
 
-	// Create pointer
-	c0de4un::fast_ptr<unsigned int> ptr_( new unsigned int( 777 ) );
+	c0de4un::rel_ptr<c0de4un::Object> copy_ = pObject;
 
-	// Create pointer assignment-copy
-	c0de4un::fast_ptr<unsigned int> ptr_copy( ptr_ );
+	// Print to a Console
+	std::cout << "Object copied, pointers count=" << pObject.count( ) << std::endl;
 
 }
 
-static void relative_ptr_test( ) noexcept
+static void ptr_test( )
 {
 
-	// Create 'raw-pointer'
-	unsigned int *const raw_pointer = new unsigned int( 777 );
+	// Create Object
+	c0de4un::rel_ptr<c0de4un::Object> object_sp( new c0de4un::Object( ) );
 
-	// Create pointer
-	c0de4un::relative_ptr<unsigned int> rel_ptr( raw_pointer );
+	// Print to a Console
+	std::cout << "Object created, pointers count=" << object_sp.count( ) << std::endl;
 
-	// Copy pointer with assignment operator
-	c0de4un::relative_ptr<unsigned int> rel_ptr_copy( rel_ptr );
-
-	// Retrieve pointer instance using raw-pointer
-	c0de4un::relative_ptr<unsigned int> rel_ptr_2( raw_pointer );
+	ptr_copy_test( object_sp );
 
 }
 
 /* MAIN */
-int main( int argC, char** argV )
+int main( )
 {
 	// Print Hello to Console
 	std::cout << "Simple Pointer Example Started" << std::endl;
 
-	// Test fast_ptr
-	fast_ptr_test( );
-
-	// Test relative_ptr
-	relative_ptr_test( );
+	// 
+	ptr_test( );
 
 	// Print Bye to Console
 	std::cout << "Simple Pointer Example Finished" << std::endl;
