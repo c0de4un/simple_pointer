@@ -410,7 +410,7 @@ namespace c0de4un
 			std::cout << "rel_ptr::copy-assignment operator" << std::endl;
 
 			// Cancel
-			if ( pOther == &this )
+			if ( pOther == *this )
 				return( *this );
 
 			// Set Data
@@ -426,7 +426,7 @@ namespace c0de4un
 			std::cout << "rel_ptr::move-assignment operator" << std::endl;
 
 			// Cancel
-			if ( pOther == &this )
+			if ( pOther == *this )
 				return( *this );
 
 			// Set Data

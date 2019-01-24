@@ -12,31 +12,47 @@
 #include <cstdlib>
 
 // Include rel_ptr
-#include "rel_ptr.hpp"
+//#include "rel_ptr.hpp"
+
+// Include trel_ptr
+#include "typeless_rel_ptr.hpp"
 
 // Include Object
 #include "objects/Object.hpp"
 
-static void ptr_copy_test( c0de4un::rel_ptr<c0de4un::Object> & pObject )
+static void prel_ptr_type_test( void *const pObject )
 {
 
-	c0de4un::rel_ptr<c0de4un::Object> copy_ = pObject;
+	// 
+	c0de4un::trel_ptr<void> copy2_( pObject );
 
 	// Print to a Console
-	std::cout << "Object copied, pointers count=" << pObject.count( ) << std::endl;
+	std::cout << "void-pointer created, pointers count=" << copy2_.count( ) << std::endl;
 
 }
 
-static void ptr_test( )
+static void prel_ptr_copy_test( c0de4un::trel_ptr<c0de4un::Object> & pObject )
+{
+
+	c0de4un::trel_ptr<c0de4un::Object> copy_ = pObject;
+	
+	// Print to a Console
+	std::cout << "Object-pointer copied, pointers count=" << pObject.count( ) << std::endl;
+
+}
+
+static void trel_ptr_test( )
 {
 
 	// Create Object
-	c0de4un::rel_ptr<c0de4un::Object> object_sp( new c0de4un::Object( ) );
-
+	c0de4un::trel_ptr<c0de4un::Object> object_sp( new c0de4un::Object( ) );
+	
 	// Print to a Console
 	std::cout << "Object created, pointers count=" << object_sp.count( ) << std::endl;
+	
+	prel_ptr_copy_test( object_sp );
 
-	ptr_copy_test( object_sp );
+	prel_ptr_type_test( object_sp.get( ) );
 
 }
 
@@ -47,7 +63,7 @@ int main( )
 	std::cout << "Simple Pointer Example Started" << std::endl;
 
 	// 
-	ptr_test( );
+	trel_ptr_test( );
 
 	// Print Bye to Console
 	std::cout << "Simple Pointer Example Finished" << std::endl;
